@@ -1,48 +1,43 @@
 package com.BridgeLabz.EmpWage;
 
-public class  EmployeeWageComputation {
-	 public static void calculateTotalWage(){
-		final int Is_Present = 1;
-		final int Is_PartTime = 2;
-		final int Emp_wage_per_hr = 20;
-		final int No_Of_Working_Days = 20;
-		final int No_Of_Working_hr = 100;
+public class EmployeeWageComputation{
 
-
-			int  Employeehr = 0 , Daily_Wage = 0, Total_Wage = 0, TotalEmployeehr =0, TotalWorkingDays =0;
-			
-			while(TotalWorkingDays < No_Of_Working_Days && TotalEmployeehr <= No_Of_Working_hr) {
-			
-				int Attendance = (int)Math.floor(Math.random()*10)%3;
-			
-			switch (Attendance) {
-			 case Is_Present:
-				Employeehr = 8;
-					System.out.println("Employee is Present ");
-					break;
-			
-			case Is_PartTime :
-				Employeehr = 4;
-				 System.out.println("Employee is Present Part Time ");
-				 break;
-				 
-			default:
-				Employeehr = 0;
-			System.out.println("Employee is Absent ");
-			break;
-			}
-			
-			TotalEmployeehr += Employeehr;
-			Daily_Wage = Emp_wage_per_hr  *Employeehr;
-			Total_Wage = Daily_Wage * No_Of_Working_Days;
-			
-			System.out.println("Employee Daily Wage is = "+Daily_Wage);
-			System.out.println("Employee Monthly Total Wage is = "+Total_Wage);
-		 }
-		    
-	}
-	 public static void main(String args[])
+	public static void calculateTotalWage(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs){
+	    final int PART_TIME = 1;
+	    final int FULL_TIME = 2;
+	    int totalWage = 0;
+	    int workingHrs = 0;
+	
+	    System.out.println("Details of " + companyName + " employee");
+	    System.out.println("-----------------------------------------------------");
+	    System.err.println("Wage per hour:" + wagePerHr);
+	    System.out.println("Maximum working days:" + maxWorkingDays);
+	    System.out.println("Maximum working hours:" + maxWorkingHrs);
+	
+	    for (int day = 1, totalWorkingHrs = 0; day <= maxWorkingDays
+	            && totalWorkingHrs <= maxWorkingHrs; day++, totalWorkingHrs += workingHrs)
 	    {
-	        calculateTotalWage();
+	        int empType = (int) (Math.random() * 100) % 3;
+	        switch (empType)
+	        {
+	            case FULL_TIME:
+	                workingHrs = 8;
+	                break;
+	            case PART_TIME:
+	                workingHrs = 4;
+	                break;
+	            default:
+	                workingHrs = 0;
+	                break;
+	        }
+	        int wage = workingHrs * wagePerHr;
+	        totalWage += wage;
 	    }
+	    System.out.println("Total wage for a month of " + companyName + " employee is " + totalWage + "\n");
 	}
+	public static void main(String args[])
+	{
+	    calculateTotalWage("Amazon", 40, 15, 200);
+	    calculateTotalWage("BigBazar", 20, 20, 100);
+	}
+}
