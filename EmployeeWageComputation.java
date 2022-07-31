@@ -1,7 +1,7 @@
 package com.BridgeLabz.EmpWage;
 
 public class  EmployeeWageComputation {
-	public static void main(String[] args) { 
+	 public static void calculateTotalWage(){
 		final int Is_Present = 1;
 		final int Is_PartTime = 2;
 		final int Emp_wage_per_hr = 20;
@@ -41,4 +41,8 @@ public class  EmployeeWageComputation {
 		 }
 		    
 	}
+	 public static void main(String args[])
+	    {
+	        calculateTotalWage();
+	    }
 	}
